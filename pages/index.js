@@ -16,7 +16,6 @@ export default function Home({ homeData, contactData, menu }) {
         <title>Care4Rare</title>
         <link rel="icon" href="favicon.ico"></link>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
       </Head>
