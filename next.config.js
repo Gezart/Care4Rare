@@ -1,10 +1,12 @@
 module.exports = {
-  async rewrites() {
-      return [
+    images: {
+      remotePatterns: [
         {
-          source: 'http://13.38.32.150/',
-          destination: 'https://care4-rare-owmf.vercel.app/',
+          protocol: 'http',
+          hostname: '13.38.32.150',
+          port: '',
+          pathname: '/wp-content/uploads/',
         },
-      ]
+      ],
     },
-};
+  }
