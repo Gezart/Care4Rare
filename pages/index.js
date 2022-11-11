@@ -14,6 +14,7 @@ export default function Home({ homeData, contactData, menu }) {
     <>
       <Head>
         <title>Care4Rare</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         <link rel="icon" href="favicon.ico"></link>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

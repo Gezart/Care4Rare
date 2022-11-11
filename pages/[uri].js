@@ -15,6 +15,7 @@ export default function SlugPage({ page, contactData, menu }) {
     <div>
       <Head>
         <title>{page.title} - Care4Rare</title>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"></meta>
         <link rel="icon" href="favicon.ico"></link>
       </Head>
 
