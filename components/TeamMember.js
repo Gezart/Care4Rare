@@ -7,7 +7,7 @@ const TeamMember = ({ teamMember }) => {
         <Container>
             <div className="team-member">
                 {
-                    teamMember?.map((member, index, myLoader) =>
+                    teamMember?.map((member, index) =>
                         <div className="member" key={index}>
                             <div className="image">
                                 <img src={`${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/${member?.profilePicture?.mediaDetails?.file}`} alt={member?.name} />
