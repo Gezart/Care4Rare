@@ -11,7 +11,7 @@ const Banner = ({ title, content, image, bannerSize, bannerServices }) => {
     return `${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/${image.mediaDetails.file}`;
   }
   return (
-    <div className={`banner ${bannerSize}`} style={{ backgroundImage: `url(/${image.mediaDetails.file})` }}>
+    <div className={`banner ${bannerSize}`} style={{ backgroundImage: `url(${bgImage})` }}>
       <Container>
         <div className="banner-content">
           <h1>{title}</h1>
