@@ -162,3 +162,11 @@ export async function getStaticProps(){
     }
   }
 }
+
+export async function getStaticPaths() {
+  const paths = []
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}
