@@ -62,6 +62,7 @@ export async function getStaticProps(){
             title
             content
             image {
+              mediaItemUrl
               mediaDetails{
                 file
               }
