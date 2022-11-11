@@ -6,12 +6,12 @@ import 'swiper/css' ;
 
 const Banner = ({ title, content, image, bannerSize, bannerServices }) => {
   console.log(bannerSize);
-  let bgImage = `${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/${image.mediaDetails.file}`
+  let bgImage = `http://13.38.32.150/wp-content/uploads/${image.mediaDetails.file}`
   const myLoader = () => {
     return `${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/${image.mediaDetails.file}`;
   }
   return (
-    <div className={`banner ${bannerSize}`} style={{ backgroundImage: `url(${myLoader})` }}>
+    <div className={`banner ${bannerSize}`} style={{ backgroundImage: `url(${bgImage})` }}>
       <Container>
         <div className="banner-content">
           <h1>{title}</h1>
