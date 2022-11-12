@@ -9,7 +9,7 @@ if (!process.env.WORDPRESS_API_URL) {
 module.exports = {
   images: {
     domains: [
-      process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT.match(/(?!(w+)\.)\w*(?:\w+\.)+\w+/)[0], // Valid WP Image domain.
+      `${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/2022/11/Rectangle-55.png`, // Valid WP Image domain.
     ],
   },
 }
