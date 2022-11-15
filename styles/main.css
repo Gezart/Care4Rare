@@ -884,6 +884,7 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option {
 .partners .swiper-pagination-bullet {
   width: 16px !important;
   height: 16px !important;
+  opacity: 1 !important;
   background-color: #9CA3AF;
 }
 
