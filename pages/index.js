@@ -5,11 +5,15 @@ import Layout from '../components/Layout';
 import Banner from '../components/Banner';
 import Text from '../components/Text';
 import PlainText from '../components/PlainText';
+import Services from '../components/Services';
+import Partners from '../components/Partners';
+import GoToJobs from '../components/GoToJobs';
 
 
 export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
   let mainMenu = menu; 
+  console.log('sssss', sections);
   return (
     <>
       <Head>
@@ -31,6 +35,12 @@ export default function Home({ homeData, contactData, menu }) {
                     return <Text {...section} key={index}/>
                   case 'Page_Sections_Sections_PlainText':
                     return <PlainText {...section} key={index}/>
+                  case 'Page_Sections_Sections_Services':
+                    return <Services {...section} contactData={contactData} key={index}/>
+                  case 'Page_Sections_Sections_Partners':
+                  return <Partners {...section}/>
+                  case 'Page_Sections_Sections_GoToJobs':
+                    return <GoToJobs {...section}/>
                       
                   default: 
                   return ''
@@ -89,6 +99,51 @@ export async function getStaticProps(){
               }
             }
           }
+          ...on Page_Sections_Sections_Services{
+            services{
+              title
+              subservices{
+                title
+                content
+                image{
+                  mediaItemUrl
+                  mediaDetails{
+                    file
+                  }
+                }
+              }
+            }
+          }
+          ...on Page_Sections_Sections_Partners{
+            partnersTitle
+            backgroundImage{
+              mediaItemUrl
+            }
+            partner{
+              link{
+                url
+              }
+              image{
+                mediaItemUrl
+              }
+            }
+          }
+          ...on Page_Sections_Sections_GoToJobs{
+            goToJobs{
+              title
+              link{
+                title
+                url
+              }
+              image{
+                mediaItemUrl
+              }
+            }
+          }
+
+
+
+
         }
       }
     }

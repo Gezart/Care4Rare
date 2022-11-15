@@ -4,6 +4,7 @@ import Banner from '../components/Banner';
 import ContactForm from '../components/ContactForm';
 import Layout from '../components/Layout';
 import PlainText from '../components/PlainText';
+import Services from '../components/Services';
 import TeamMember from '../components/TeamMember';
 import Text from '../components/Text';
 import { client } from '../lib/apollo';
@@ -21,7 +22,7 @@ export default function SlugPage({ page, contactData, menu }) {
       <Layout contactData = {contactData} mainMenu={mainMenu}>
         <main className={`page page-${page.slug}`}>
           {
-            sections.map((section, index) => {
+           sections && sections.map((section, index) => {
               const typeName = section.__typename;
               switch (typeName) {
                 case 'Page_Sections_Sections_Banner':
@@ -34,6 +35,8 @@ export default function SlugPage({ page, contactData, menu }) {
                   return <TeamMember {...section} key={index}/>
                 case 'Page_Sections_Sections_ContactForm':
                   return <ContactForm {...section} contactData={contactData} key={index}/>
+                case 'Page_Sections_Sections_Services':
+                  return <Services {...section} contactData={contactData} key={index}/>
 
                 default:
                   return ''
@@ -100,6 +103,22 @@ export async function getStaticProps({ params }) {
             title
             content
           }
+          ...on Page_Sections_Sections_Services{
+            services{
+              title
+              subservices{
+                title
+                content
+                image{
+                  mediaItemUrl
+                  mediaDetails{
+                    file
+                  }
+                }
+              }
+            }
+          }
+
 
 
         }
