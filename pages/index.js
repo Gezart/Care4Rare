@@ -13,7 +13,6 @@ import GoToJobs from '../components/GoToJobs';
 export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
   let mainMenu = menu; 
-  console.log('sssss', sections);
   return (
     <>
       <Head>

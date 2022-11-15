@@ -8,7 +8,6 @@ const PlainText = ({ content, images, button }) => {
         return `${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/${images?.mediaDetails?.file}`
       }
 
-    console.log("test", `${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-content/uploads/${images?.mediaDetails?.file}`);
     return (
         <Container>
             <div className="plain-text">

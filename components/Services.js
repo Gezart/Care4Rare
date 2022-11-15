@@ -7,7 +7,6 @@ import Container from './Container'
 const Services = ({ services }) => {
     const [expanded, setExpanded] = useState(services[0].title)
     const [showContent, setShowContent] = useState(services[0].subservices[0].title)
-    console.log("ss", services[0]);
 
     return (
         <Container>

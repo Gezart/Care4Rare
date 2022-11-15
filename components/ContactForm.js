@@ -10,7 +10,6 @@ import Container from './Container';
 
 const ContactForm = ({ title, content, contactData }) => {
 
-  console.log('sss', contactData);
   const initialValues = {
     firstName: "",
     lastName: "",
@@ -44,7 +43,6 @@ const ContactForm = ({ title, content, contactData }) => {
       }
     });
 
-    console.log("Form data", values);
     onSubmitProps.resetForm();
   };
 

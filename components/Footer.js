@@ -3,7 +3,6 @@ import Container from "./Container";
 
 
 export default function Footer({ contactData }) {
-  console.log('footer', contactData);
   let footerMenu = contactData.footerMenu
   let policyMenu = contactData.policyMenu
   return (
