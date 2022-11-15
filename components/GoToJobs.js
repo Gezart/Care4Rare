@@ -22,7 +22,6 @@ const GoToJobs = ({ goToJobs }) => {
 
                 }
             </div>
-
         </Container>
     )
 }
