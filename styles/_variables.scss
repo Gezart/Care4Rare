@@ -13,7 +13,7 @@ body{
     margin: 0;
     background-color: #F5F5F5;
 }
-h1,h2,h3,h4,h5,h6,a,span,li,ul,p, label, option{
+h1,h2,h3,h4,h5,h6,a,span,li,ul,p, label, option, input{
     text-decoration: none;
     margin: 0;
     padding: 0;
@@ -65,5 +65,38 @@ h1,h2,h3,h4,h5,h6,a,span,li,ul,p, label, option{
             font-size: 18px;
             line-height: 40px;
         }
+    }
+}
+@mixin button {
+    background-color: $greenColor;
+    color: #fff;
+    outline: none;
+    border: none;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    padding: 0 15px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: .4s;
+    &:hover{
+       background-color: #fff;
+       color: $greenColor;
+       border: 1px solid $greenColor;
+       svg{
+           path{
+               stroke: $greenColor;
+           }
+       }
+    }
+    @media (min-width: 992px){
+       font-size: 18px;
+       line-height: 28px;
+       padding: 17px 35px;
     }
 }

@@ -1,0 +1,157 @@
+import { gql } from '@apollo/client';
+import React from 'react'
+import Banner from '../../components/Banner';
+import Layout from '../../components/Layout';
+import Post from '../../components/Post';
+import { client } from '../../lib/apollo';
+
+const Job = ({ job, blogOptions, contactData, menu }) => {
+  console.log('>>>>>>>>>>>', job)
+  let mainMenu = menu;
+  return (
+    <Layout contactData={contactData} mainMenu={mainMenu}>
+      <main className='post post-job'>
+        <Banner title={blogOptions?.banner?.title} image={blogOptions?.banner?.image} />
+        <Post post={job} from={"job"}/>
+      </main>
+
+    </Layout>
+  )
+}
+
+export default Job
+
+export async function getStaticProps({ params }) {
+  const GET_POSTS_BY_URI = gql`
+    query NewQuery($id: ID!) {
+        job(id: $id, idType: URI) {
+          title
+          content
+          uri
+          date
+          featuredImage {
+            node {
+              mediaItemUrl
+            }
+          }
+          jobDetails{
+            companyLogo{
+              mediaItemUrl
+            }
+            vertragsart
+            anstellungsart
+            ort
+            einrichtung
+            abWann
+            zeitmodell
+            bundesland
+            region
+            stellennummer
+            tel
+            website
+          }
+        }
+        acfOptionsThemeOption {
+            themeOptions {
+              logo
+              footerDescription
+              footerMenuTitle
+              footerMenu {
+                title {
+                  ... on Page {
+                    title
+                    uri
+                  }
+                }
+              }
+              policyTitle
+              policyMenu {
+                title {
+                  ... on Page {
+                    title
+                    uri
+                  }
+                }
+              }
+              locationIcon
+              locationTitle
+              location
+              location2
+              emailIcon
+              emailTitle
+              email {
+                title
+                url
+              }
+              phoneIcon
+              phoneTitle
+              phone {
+                title
+                url
+              }
+            }
+        }
+        menus(where: {slug: "main-menu"}) {
+            edges {
+              node {
+                slug
+                menuItems {
+                  nodes {
+                    uri
+                    label
+                  }
+                }
+              }
+            }
+        }
+        acfOptionsJobsOption {
+            blogOptions {
+              banner {
+                title
+                image {
+                  mediaItemUrl
+                  mediaDetails {
+                    file
+                  }
+                }
+              }
+              jobsTitle {
+                title
+                url
+              }
+              jobsHeader
+              trainingTitle {
+                title
+                url
+              }
+            }
+        }
+      }
+    `
+  const response = await client.query({
+    query: GET_POSTS_BY_URI,
+    variables: {
+      id: params.uri
+    }
+  })
+  const job = response?.data?.job
+  const blogOptions = response?.data?.acfOptionsJobsOption?.blogOptions
+  const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
+  const menu = response?.data?.menus?.edges[0].node.menuItems.nodes
+  return {
+    props: {
+      job,
+      blogOptions,
+      contactData,
+      menu
+    }
+  }
+}
+
+export async function getStaticPaths() {
+  const paths = []
+  return {
+    paths,
+    fallback: 'blocking'
+  }
+}

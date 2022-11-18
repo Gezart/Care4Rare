@@ -41,37 +41,7 @@
            }
         }
         button{
-         background-color: $greenColor;
-         color: #fff;
-         outline: none;
-         border: none;
-         height: 50px;
-         width: 100%;
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         font-size: 16px;
-         line-height: 24px;
-         font-weight: 400;
-         padding: 0 15px;
-         cursor: pointer;
-         border-radius: 6px;
-         transition: .4s;
-         &:hover{
-            background-color: #fff;
-            color: $greenColor;
-            border: 1px solid $greenColor;
-            svg{
-                path{
-                    stroke: $greenColor;
-                }
-            }
-         }
-         @media (min-width: 992px){
-            font-size: 18px;
-            line-height: 28px;
-            padding: 17px 35px;
-         }
+            @include button;
         }
     }
 }

@@ -37,7 +37,7 @@ const ContactForm = ({ title, content, contactData }) => {
     formData.append("email", values.email);
     formData.append("message", values.message);
 
-    await axios.post(`${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-json/contact-form-7/v1/contact-forms/578/feedback`, formData, {
+    await axios.post(`${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/wp-json/contact-form-7/v1/contact-forms/980/feedback`, formData, {
       headers: {
         Authorization: `Basic ${process.env.NEXT_AUTH_TOKEN}`
       }

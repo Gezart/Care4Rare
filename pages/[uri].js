@@ -10,17 +10,17 @@ import Text from '../components/Text';
 import { client } from '../lib/apollo';
 
 export default function SlugPage({ page, contactData, menu }) {
-  let sections = page.sections.sections
+  let sections = page?.sections?.sections
   let mainMenu = menu; 
   return (
     <div>
       <Head>
-        <title>{page.title} - Care4Rare</title>
+        <title>{page?.title} - Care4Rare</title>
         <link rel="icon" href="favicon.ico"></link>
       </Head>
 
       <Layout contactData = {contactData} mainMenu={mainMenu}>
-        <main className={`page page-${page.slug}`}>
+        <main className={`page page-${page?.slug}`}>
           {
            sections && sections.map((section, index) => {
               const typeName = section.__typename;
