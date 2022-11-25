@@ -72,56 +72,53 @@ export async function getStaticProps({ params }) {
               }
             }
           }
-          ... on Page_Sections_Sections_Text{
+          ... on Page_Sections_Sections_Text {
             title
             content
           }
-          ... on Page_Sections_Sections_PlainText{
-						content
-            button{
+          ... on Page_Sections_Sections_PlainText {
+            content
+            button {
               title
               url
             }
-            images{
-              mediaDetails{
+            images {
+              mediaDetails {
                 file
               }
             }
           }
-          ...on Page_Sections_Sections_TeamMembers{
-            teamMember{
+          ... on Page_Sections_Sections_TeamMembers {
+            teamMember {
               name
               jobTitle
               biography
-              profilePicture{
-                mediaDetails{
+              profilePicture {
+                mediaDetails {
                   file
                 }
               }
             }
           }
-          ...on Page_Sections_Sections_ContactForm{
+          ... on Page_Sections_Sections_ContactForm {
             title
             content
           }
-          ...on Page_Sections_Sections_Services{
-            services{
+          ... on Page_Sections_Sections_Services {
+            services {
               title
-              subservices{
+              subservices {
                 title
                 content
-                image{
+                image {
                   mediaItemUrl
-                  mediaDetails{
+                  mediaDetails {
                     file
                   }
                 }
               }
             }
           }
-
-
-
         }
       }
     }
@@ -131,17 +128,17 @@ export async function getStaticProps({ params }) {
         footerDescription
         footerMenuTitle
         footerMenu {
-          title{
-            ...on Page{
+          title {
+            ... on Page {
               title
               uri
             }
           }
         }
         policyTitle
-        policyMenu{
-          title{
-            ...on Page{
+        policyMenu {
+          title {
+            ... on Page {
               title
               uri
             }

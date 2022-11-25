@@ -60,152 +60,151 @@ export async function getStaticProps(){
 
   const homeQuery = gql`
   query homeQuery {
-  pages(where: {title: "Home"}) {
-    nodes {
-      title
-      slug
-      uri
-      sections {
+    pages(where: {title: "Home"}) {
+      nodes {
+        title
+        slug
+        uri
         sections {
-          ... on Page_Sections_Sections_Banner {
-            bannerSize
-            title
-            content
-            image {
-              mediaItemUrl
-              mediaDetails{
-                file
+          sections {
+            ... on Page_Sections_Sections_Banner {
+              bannerSize
+              title
+              content
+              image {
+                mediaItemUrl
+                mediaDetails {
+                  file
+                }
+              }
+              bannerServices {
+                icon
+                title
+                content
               }
             }
-            bannerServices {
-							icon
+            ... on Page_Sections_Sections_Text {
               title
               content
             }
-          }
-          ... on Page_Sections_Sections_Text{
-            title
-            content
-          }
-          ... on Page_Sections_Sections_PlainText{
-						content
-            button{
-              title
-              url
-            }
-            images{
-              mediaDetails{
-                file
+            ... on Page_Sections_Sections_PlainText {
+              content
+              button {
+                title
+                url
+              }
+              images {
+                mediaDetails {
+                  file
+                }
               }
             }
-          }
-          ...on Page_Sections_Sections_Services{
-            services{
-              title
-              subservices{
+            ... on Page_Sections_Sections_Services {
+              services {
                 title
-                content
-                image{
-                  mediaItemUrl
-                  mediaDetails{
-                    file
+                subservices {
+                  title
+                  content
+                  image {
+                    mediaItemUrl
+                    mediaDetails {
+                      file
+                    }
                   }
                 }
               }
             }
-          }
-          ...on Page_Sections_Sections_Partners{
-            partnersTitle
-            backgroundImage{
-              mediaItemUrl
-            }
-            partner{
-              link{
-                url
-              }
-              image{
+            ... on Page_Sections_Sections_Partners {
+              partnersTitle
+              backgroundImage {
                 mediaItemUrl
               }
+              partner {
+                link {
+                  url
+                }
+                image {
+                  mediaItemUrl
+                }
+              }
             }
-          }
-          ...on Page_Sections_Sections_GoToJobs{
-            goToJobs{
-              title
-              link{
+            ... on Page_Sections_Sections_GoToJobs {
+              goToJobs {
                 title
-                url
-              }
-              image{
-                mediaItemUrl
+                link {
+                  title
+                  url
+                }
+                image {
+                  mediaItemUrl
+                }
               }
             }
           }
         }
       }
     }
-  }
-  acfOptionsThemeOption {
-    themeOptions {
-      logo
-      footerDescription
-      footerMenuTitle
-      footerMenu {
-        title{
-          ...on Page{
-            title
-            uri
+    acfOptionsThemeOption {
+      themeOptions {
+        logo
+        footerDescription
+        footerMenuTitle
+        footerMenu {
+          title {
+            ... on Page {
+              title
+              uri
+            }
           }
         }
-      }
-      policyTitle
-      policyMenu{
-        title{
-          ...on Page{
-            title
-            uri
+        policyTitle
+        policyMenu {
+          title {
+            ... on Page {
+              title
+              uri
+            }
           }
         }
-      }
-      locationIcon
-      locationTitle
-      location
-      location2
-      emailIcon
-      emailTitle
-      email {
-        title
-        url
-      }
-      phoneIcon
-      phoneTitle
-      phone {
-        title
-        url
-      }
-      mobileMenu {
-        icon
-        page {
-          url
+        locationIcon
+        locationTitle
+        location
+        location2
+        emailIcon
+        emailTitle
+        email {
           title
+          url
+        }
+        phoneIcon
+        phoneTitle
+        phone {
+          title
+          url
+        }
+        mobileMenu {
+          icon
+          page {
+            url
+            title
+          }
         }
       }
     }
-  }
-  menus{
-    edges {
-      node {
-        slug
-        menuItems {
-          nodes {
-            uri
-            label
+    menus {
+      edges {
+        node {
+          slug
+          menuItems {
+            nodes {
+              uri
+              label
+            }
           }
         }
       }
     }
   }
-  
-}
 
   `
   const response = await client.query({
