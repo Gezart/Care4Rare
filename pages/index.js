@@ -11,7 +11,7 @@ import GoToJobs from '../components/GoToJobs';
 
 
 export default function Home({ homeData, contactData, menu }) {
-  let sections = homeData?.sections?.sections
+  let sections = homeData.sections.sections
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
   console.log('sss', homeData);
@@ -140,10 +140,6 @@ export async function getStaticProps(){
               }
             }
           }
-
-
-
-
         }
       }
     }
