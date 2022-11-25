@@ -12,7 +12,8 @@ import GoToJobs from '../components/GoToJobs';
 
 export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
-  let mainMenu = menu; 
+  let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
+  let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
   return (
     <>
       <Head>
@@ -22,7 +23,7 @@ export default function Home({ homeData, contactData, menu }) {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
       </Head>
-      <Layout contactData ={contactData} mainMenu={mainMenu}>
+      <Layout contactData ={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
           <main className='page page-home'>
             {
               sections?.map((section, index) => {
@@ -185,9 +186,16 @@ export async function getStaticProps(){
         title
         url
       }
+      mobileMenu {
+        icon
+        page {
+          url
+          title
+        }
+      }
     }
   }
-  menus(where: {slug: "main-menu"}) {
+  menus{
     edges {
       node {
         slug
@@ -200,6 +208,7 @@ export async function getStaticProps(){
       }
     }
   }
+  
 }
 
   `
@@ -208,7 +217,7 @@ export async function getStaticProps(){
   })
   const homeData = response?.data?.pages?.nodes[0]
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
-  const menu = response?.data?.menus?.edges[0].node.menuItems.nodes
+  const menu = response?.data?.menus
   return {
     props: {
       homeData,

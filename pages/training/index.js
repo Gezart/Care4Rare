@@ -11,10 +11,10 @@ import { client } from '../../lib/apollo'
 const index = ({ trainings, blogOptions, contactData, menu }) => {
   const [search, setSearch] = useState("")
   const [location, setLocation] = useState("")
-  console.log('ggg',trainings);
-  let mainMenu = menu;
+  let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
+  let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
   return (
-    <Layout contactData={contactData} mainMenu={mainMenu}>
+    <Layout contactData={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
       <main className='page page-trainings'>
         <Banner title={blogOptions?.banner?.title} image={blogOptions?.banner?.image} />
         <Container>
@@ -22,8 +22,8 @@ const index = ({ trainings, blogOptions, contactData, menu }) => {
           <div className="job-header">
             <div className="jobs-header-content"  dangerouslySetInnerHTML={{ __html: blogOptions?.trainingsHeader}}></div>
             <div className="search-filters">
-              <input type="text" placeholder="Berufsbezeichnung oder nummer" onChange={(e) => setSearch(e.target.value)} />
-              <input type="text" placeholder="PLZ oder Ort" onChange={(e) => setLocation(e.target.value)} />
+              <input type="text" placeholder="Berufsbezeichnung oder nummer" onChange={(e) => setSearch(e.target.value.toLowerCase())} />
+              <input type="text" placeholder="PLZ oder Ort" onChange={(e) => setLocation(e.target.value.toLowerCase())} />
             </div>
           </div>
           <div className="all-trainings items">
@@ -154,9 +154,16 @@ export async function getServerSideProps() {
                 title
                 url
               }
+              mobileMenu {
+                icon
+                page {
+                  url
+                  title
+                }
+              }
             }
           }
-          menus(where: {slug: "main-menu"}) {
+          menus{
             edges {
               node {
                 slug
@@ -178,7 +185,7 @@ export async function getServerSideProps() {
   const trainings = response?.data?.trainings?.nodes
   const blogOptions = response?.data?.acfOptionsJobsOption?.blogOptions
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
-  const menu = response?.data?.menus?.edges[0].node.menuItems.nodes
+  const menu = response?.data?.menus
   return {
     props: {
       trainings,

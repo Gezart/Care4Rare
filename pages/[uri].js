@@ -11,7 +11,9 @@ import { client } from '../lib/apollo';
 
 export default function SlugPage({ page, contactData, menu }) {
   let sections = page?.sections?.sections
-  let mainMenu = menu; 
+  console.log('>>>>>>>>>>>', menu)
+  let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
+  let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
   return (
     <div>
       <Head>
@@ -19,7 +21,7 @@ export default function SlugPage({ page, contactData, menu }) {
         <link rel="icon" href="favicon.ico"></link>
       </Head>
 
-      <Layout contactData = {contactData} mainMenu={mainMenu}>
+      <Layout contactData = {contactData}  mainMenu={mainMenu} rightMenu={rightMenu}>
         <main className={`page page-${page?.slug}`}>
           {
            sections && sections.map((section, index) => {
@@ -162,9 +164,16 @@ export async function getStaticProps({ params }) {
           title
           url
         }
+        mobileMenu {
+          icon
+          page {
+            url
+            title
+          }
+        }
       }
     }
-    menus(where: {slug: "main-menu"}) {
+    menus {
       edges {
         node {
           slug
@@ -187,7 +196,7 @@ export async function getStaticProps({ params }) {
   })
   const page = response?.data?.page
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
-  const menu = response?.data?.menus?.edges[0].node.menuItems.nodes
+  const menu = response?.data?.menus
   return {
     props: {
       page,

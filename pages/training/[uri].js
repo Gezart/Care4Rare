@@ -6,10 +6,10 @@ import Post from '../../components/Post';
 import { client } from '../../lib/apollo';
 
 const Training = ({ training, blogOptions, contactData, menu }) => {
-  console.log('>>>>>>>>>>>', training)
-  let mainMenu = menu;
+  let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
+  let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
   return (
-    <Layout contactData={contactData} mainMenu={mainMenu}>
+    <Layout contactData={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
       <main className='post post-job'>
         <Banner title={blogOptions?.banner?.title} image={blogOptions?.banner?.image} />
         <Post post={training} from={"training"} />
@@ -88,9 +88,16 @@ export async function getStaticProps({ params }) {
                 title
                 url
               }
+              mobileMenu {
+                icon
+                page {
+                  url
+                  title
+                }
+              }
             }
         }
-        menus(where: {slug: "main-menu"}) {
+        menus{
             edges {
               node {
                 slug
@@ -136,7 +143,7 @@ export async function getStaticProps({ params }) {
   const training = response?.data?.training
   const blogOptions = response?.data?.acfOptionsJobsOption?.blogOptions
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
-  const menu = response?.data?.menus?.edges[0].node.menuItems.nodes
+  const menu = response?.data?.menus
   return {
     props: {
       training,
