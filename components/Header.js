@@ -54,7 +54,7 @@ const Header = ({ mainMenu, rightMenu, mobileMenu }) => {
                 <path d="M25.0266 60.0951H28.2819V61.552L28.4602 61.6574C28.6762 61.4626 28.8767 61.2511 29.0601 61.0247C29.688 60.1246 30.5884 59.8932 31.6697 59.8906V62.3055C30.9323 62.4881 30.1821 62.6167 29.4715 62.8623C28.4526 63.2133 28.3125 63.4795 28.3138 64.5737C28.3138 68.6816 28.3138 72.7904 28.3138 76.9C28.3138 77.1958 28.3405 77.4928 28.3571 77.8477H25.0266V60.0951Z" fill="white" />
               </svg>
             </Link>
-            <svg onClick={ () => setIsOpen(!isOpen) } className='hamburger-menu' xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"> <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            <svg onClick={ () => setIsOpen(!isOpen) } className='hamburger-menu w-6 h-6' xmlns="http://www.w3.org/2000/svg" fill="#fff" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"> <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
           </div>
 
           <nav className={`navigation ${isOpen ? "active" : ""}`} >
@@ -106,7 +106,7 @@ const Header = ({ mainMenu, rightMenu, mobileMenu }) => {
           <div className={`mobile-menu-wrapper ${isOpen ? "active" : ""}`}>
             <div className="mobile-menu">
             <div className="close-menu" onClick={() => setIsOpen(!isOpen)}>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">  <path stroke-linecap="round" stroke-linejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">  <path strokeLinecap="round" strokeLinejoin="round" d="M9 15L3 9m0 0l6-6M3 9h12a6 6 0 010 12h-3" /></svg>
             </div>
               <ul>
                 {

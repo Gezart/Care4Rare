@@ -11,7 +11,6 @@ import { client } from '../lib/apollo';
 
 export default function SlugPage({ page, contactData, menu }) {
   let sections = page?.sections?.sections
-  console.log('>>>>>>>>>>>', menu)
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
   return (

@@ -38,9 +38,9 @@ export default function Home({ homeData, contactData, menu }) {
                   case 'Page_Sections_Sections_Services':
                     return <Services {...section} contactData={contactData} key={index}/>
                   case 'Page_Sections_Sections_Partners':
-                  return <Partners {...section}/>
+                  return <Partners {...section}  key={index}/>
                   case 'Page_Sections_Sections_GoToJobs':
-                    return <GoToJobs {...section}/>
+                    return <GoToJobs {...section}  key={index}/>
                       
                   default: 
                   return ''

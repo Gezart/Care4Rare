@@ -13,7 +13,7 @@ const PlainText = ({ content, images, button }) => {
             <div className="plain-text">
                 <div className="image">
                     <Image
-                        fill
+                        fill="true"
                         loader={myLoader}
                         src="me.png"
                         alt="Picture of the author"
@@ -23,9 +23,6 @@ const PlainText = ({ content, images, button }) => {
                 </div>
                 <div className="content" dangerouslySetInnerHTML={{ __html: content }}></div>
             </div>
-            {/* <Link to={link}>{linkText}</Link> */}
-            {/* {button.url + "--" + button.title} */}
-
 
         </Container>
     )

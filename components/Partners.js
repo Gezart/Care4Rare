@@ -31,7 +31,7 @@ const Partners = ({ backgroundImage, partnersTitle, partner }) => {
                 >
                     {
                         partner && partner.map((item, index) =>
-                            <SwiperSlide>
+                            <SwiperSlide key={index}>
                                 <div className='partner'>
                                     <a href={item?.link?.url} target="_blank"><img src={item?.image?.mediaItemUrl} alt="partner image" /></a>
                                 </div>
