@@ -4,7 +4,6 @@ import Container from './Container'
 import Popup from './Popup'
 
 const Post = ({ post, from }) => {
-    console.log('>>>>>>>>>>>[[[', post)
     const [openPopup, setOpenPopup] = useState(false);
     const togglePopup = () =>{
         setOpenPopup(!openPopup)

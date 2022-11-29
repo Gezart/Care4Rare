@@ -13,7 +13,6 @@ export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
-  console.log('sss', homeData);
   return (
     <>
       <Head>
@@ -181,7 +180,13 @@ export async function getStaticProps(){
           title
           url
         }
-
+        mobileMenu {
+          icon
+          page {
+            url
+            title
+          }
+        }
       }
     }
     menus {
@@ -214,11 +219,3 @@ export async function getStaticProps(){
     }
   }
 }
-
-// mobileMenu {
-//   icon
-//   page {
-//     url
-//     title
-//   }
-// }

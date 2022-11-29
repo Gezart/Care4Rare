@@ -6,7 +6,6 @@ import Container from './Container';
 
 const Header = ({ mainMenu, rightMenu, mobileMenu }) => {
   const [isOpen, setIsOpen] = useState(false)
-  console.log('>>>>>>>>>>>', mobileMenu)
   return (
     <header className="site-header">
       <div className="top-header">
