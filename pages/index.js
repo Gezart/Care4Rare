@@ -13,6 +13,7 @@ export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
+  console.log('sss', homeData);
   return (
     <>
       <Head>
@@ -62,7 +63,6 @@ export async function getStaticProps(){
       nodes {
         title
         slug
-        uri
         sections {
           sections {
             ... on Page_Sections_Sections_Banner {
@@ -82,8 +82,8 @@ export async function getStaticProps(){
               }
             }
             ... on Page_Sections_Sections_Text {
-                title
-                content
+              title
+              content
             }
             ... on Page_Sections_Sections_PlainText {
               content
@@ -208,7 +208,8 @@ export async function getStaticProps(){
   const response = await client.query({
     query: homeQuery
   })
-  const homeData = response?.data?.pages?.nodes[0]
+  const homeData = response?.data?.pages?.nodes[0];
+  console.log(typeof homeData);
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
   const menu = response?.data?.menus
   return {
