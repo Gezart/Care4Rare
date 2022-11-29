@@ -83,8 +83,8 @@ export async function getStaticProps(){
               }
             }
             ... on Page_Sections_Sections_Text {
-              title
-              content
+                title
+                content
             }
             ... on Page_Sections_Sections_PlainText {
               content
