@@ -9,7 +9,6 @@ import Services from '../components/Services';
 import Partners from '../components/Partners';
 import GoToJobs from '../components/GoToJobs';
 
-
 export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
