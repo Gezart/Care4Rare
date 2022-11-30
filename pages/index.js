@@ -2,9 +2,12 @@ import { gql } from '@apollo/client'
 import { client } from '../lib/apollo';
 import Head from 'next/head'
 import React from 'react'
+import Layout from '../components/Layout';
 
 const index = ({homeData, contactData, menu}) => {
     let sections = homeData.sections.sections
+    let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
+    let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
     console.log('menu', menu);
     console.log('homeData', homeData);
     console.log('contactData', contactData);
@@ -15,7 +18,7 @@ const index = ({homeData, contactData, menu}) => {
             <link rel="icon" href="favicon.ico"></link>
         </Head>
         <Layout contactData ={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
-            
+
         </Layout>
 
     </>
