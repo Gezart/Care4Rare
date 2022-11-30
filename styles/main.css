@@ -704,6 +704,7 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
   background-color: #fff;
   color: #4C9D10;
   border: 1px solid #4C9D10;
+  padding-right: 10px;
 }
 
 .form form button:hover svg path {
@@ -715,6 +716,9 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
     font-size: 18px;
     line-height: 28px;
     padding: 17px 35px;
+  }
+  .form form button:hover {
+    padding-right: 25px;
   }
 }
 
@@ -1106,6 +1110,17 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
   background-color: #4C9D10;
   border-radius: 6px;
   padding: 17px 20px 17px 42px;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.gotojobs .item .link-to-jobs:hover {
+  padding-right: 10px;
+}
+
+.gotojobs .item .link-to-jobs svg {
+  -webkit-transition: .4s;
+  transition: .4s;
 }
 
 .gotojobs .item .link-to-jobs a {
@@ -1559,6 +1574,7 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
   background-color: #fff;
   color: #4C9D10;
   border: 1px solid #4C9D10;
+  padding-right: 10px;
 }
 
 .post-wrapper button:hover svg path {
@@ -1570,6 +1586,9 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
     font-size: 18px;
     line-height: 28px;
     padding: 17px 35px;
+  }
+  .post-wrapper button:hover {
+    padding-right: 25px;
   }
 }
 
@@ -1611,6 +1630,7 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
 }
 
 .popup .popup-form .close-popup {
+  cursor: pointer;
   position: absolute;
   top: -10px;
   right: -10px;

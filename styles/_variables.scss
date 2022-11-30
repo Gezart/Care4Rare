@@ -88,6 +88,7 @@ h1,h2,h3,h4,h5,h6,a,span,li,ul,p, label, option, input{
        background-color: #fff;
        color: $greenColor;
        border: 1px solid $greenColor;
+       padding-right: 10px;
        svg{
            path{
                stroke: $greenColor;
@@ -98,5 +99,8 @@ h1,h2,h3,h4,h5,h6,a,span,li,ul,p, label, option, input{
        font-size: 18px;
        line-height: 28px;
        padding: 17px 35px;
+       &:hover{
+            padding-right: 25px;
+       }
     }
 }

@@ -24,6 +24,14 @@
             background-color: $greenColor;
             border-radius: 6px;
             padding: 17px 20px 17px 42px;
+            transition: .4s;
+            &:hover{
+                padding-right: 10px;
+                
+            }
+            svg{
+                transition: .4s;
+            }
             a{
                 display: flex;
                 justify-content: space-between;
