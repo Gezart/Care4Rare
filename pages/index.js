@@ -17,7 +17,6 @@ const index = ({homeData, contactData, menu}) => {
             <link rel="icon" href="favicon.ico"></link>
         </Head>
         <Layout contactData ={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
-
         </Layout>
 
     </>
