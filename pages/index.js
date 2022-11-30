@@ -5,7 +5,6 @@ import React from 'react'
 import Layout from '../components/Layout';
 
 const index = ({homeData, contactData, menu}) => {
-    let sections = homeData.sections.sections
     let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
     let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
     console.log('menu', menu);
