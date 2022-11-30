@@ -147,13 +147,6 @@ export async function getStaticProps(){
                 title
                 url
               }
-              mobileMenu {
-                icon
-                page {
-                  url
-                  title
-                }
-              }
             }
           }
         menus {
