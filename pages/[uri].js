@@ -53,7 +53,7 @@ export default function SlugPage({ page, contactData, menu }) {
 }
 
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const GET_PAGES_BY_URI = gql`
   query GetAllPages($id: ID!) {
     page(idType: URI, id: $id) {
