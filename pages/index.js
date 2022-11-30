@@ -26,7 +26,7 @@ const index = ({homeData, contactData, menu}) => {
 
 export default index
 
-export async function getStaticProps(){
+export async function getServerSideProps(){
 
     const homeQuery = gql`
     query homeQuery {
