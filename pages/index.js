@@ -21,7 +21,7 @@ export default function Home({ homeData, contactData, menu }) {
         <link rel="icon" href="favicon.ico"></link>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"></link>
+        {/* <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet"></link> */}
       </Head>
       <Layout contactData ={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
           <main className='page page-home'>
@@ -57,12 +57,15 @@ export default function Home({ homeData, contactData, menu }) {
 
 export async function getStaticProps(){
 
+  console.log("=======================================================")
+
   const homeQuery = gql`
   query homeQuery {
     pages(where: {title: "Home"}) {
       nodes {
         title
         slug
+        uri
         sections {
           sections {
             ... on Page_Sections_Sections_Banner {
@@ -205,11 +208,15 @@ export async function getStaticProps(){
   }
 
   `
+
+  console.log("before query")
   const response = await client.query({
     query: homeQuery
   })
+  console.log("after query")
   const homeData = response?.data?.pages?.nodes[0];
   console.log(typeof homeData);
+   
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
   const menu = response?.data?.menus
   return {
