@@ -3,10 +3,11 @@ import { client } from '../lib/apollo';
 import Head from 'next/head'
 import React from 'react'
 
-const index = ({homeData, menu}) => {
+const index = ({homeData, contactData, menu}) => {
     let sections = homeData.sections.sections
     console.log('menu', menu);
     console.log('homeData', homeData);
+    console.log('contactData', contactData);
     return (
         <>
         <Head>
@@ -108,6 +109,53 @@ export async function getStaticProps(){
               }
             }
           }
+          acfOptionsThemeOption {
+            themeOptions {
+              logo
+              footerDescription
+              footerMenuTitle
+              footerMenu {
+                title {
+                  ... on Page {
+                    title
+                    uri
+                  }
+                }
+              }
+              policyTitle
+              policyMenu {
+                title {
+                  ... on Page {
+                    title
+                    uri
+                  }
+                }
+              }
+              locationIcon
+              locationTitle
+              location
+              location2
+              emailIcon
+              emailTitle
+              email {
+                title
+                url
+              }
+              phoneIcon
+              phoneTitle
+              phone {
+                title
+                url
+              }
+              mobileMenu {
+                icon
+                page {
+                  url
+                  title
+                }
+              }
+            }
+          }
         menus {
           edges {
             node {
@@ -129,11 +177,11 @@ export async function getStaticProps(){
       query: homeQuery
     })
     const homeData = response?.data?.pages?.nodes[0]
-    // const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
+    const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
     const menu = response?.data?.menus
     return {
       props: {
-        // contactData, 
+        contactData, 
         homeData,
         menu
       }
