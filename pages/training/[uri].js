@@ -20,7 +20,7 @@ const Training = ({ training, blogOptions, contactData, menu }) => {
 
 export default Training
 
-export async function getServerSideProps({ params }) {
+export async function getStaticProps({ params }) {
   const GET_POSTS_BY_URI = gql`
     query NewQuery($id: ID!) {
         training(id: $id, idType: URI) {

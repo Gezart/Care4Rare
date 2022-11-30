@@ -202,11 +202,11 @@ export async function getServerSideProps({ params }) {
   }
 }
 
-export async function getStaticPaths() {
-  const paths = []
-  return {
-    paths,
-    fallback: 'blocking'
-  }
-}
+// export async function getStaticPaths() {
+//   const paths = []
+//   return {
+//     paths,
+//     fallback: 'blocking'
+//   }
+// }
 
