@@ -13,7 +13,6 @@ export default function Home({ homeData, contactData, menu }) {
   let sections = homeData.sections.sections
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
-  console.log('sss', homeData);
   return (
     <>
       <Head>
@@ -207,13 +206,10 @@ export async function getServerSideProps(){
 
   `
 
-  console.log("before query")
   const response = await client.query({
     query: homeQuery
   })
-  console.log("after query")
   const homeData = response?.data?.pages?.nodes[0]
-  console.log(typeof homeData);
    
   const contactData = response?.data?.acfOptionsThemeOption?.themeOptions
   const menu = response?.data?.menus
