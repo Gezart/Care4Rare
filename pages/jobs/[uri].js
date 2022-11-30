@@ -21,7 +21,7 @@ const Job = ({ job, blogOptions, contactData, menu }) => {
 
 export default Job
 
-export async function getStaticProps({ params }) {
+export async function getServerSideProps({ params }) {
   const GET_POSTS_BY_URI = gql`
     query NewQuery($id: ID!) {
         job(id: $id, idType: URI) {
