@@ -42,3 +42,15 @@
         }
     }
 }
+.page-terms-conditions, .page-privacy-policy, .page-impressum{
+    .plain-text{
+        grid-template-columns: 1fr;
+        .image{
+            display: none;
+        }
+        a{
+            color: $blueColor;
+        }
+    }
+
+}

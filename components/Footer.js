@@ -5,6 +5,7 @@ import Container from "./Container";
 export default function Footer({ contactData }) {
   let footerMenu = contactData.footerMenu
   let policyMenu = contactData.policyMenu
+  console.log(footerMenu);
   return (
     <footer className='site-footer'>
       <Container>
@@ -45,7 +46,7 @@ export default function Footer({ contactData }) {
               {
                 footerMenu.map((menuItem, index) =>
                   <>
-                    <li key={index}><a href="">{menuItem.title.title}</a></li>
+                    <li key={index}><Link href={menuItem.title.uri}>{menuItem.title.title}</Link></li>
                   </>
 
                 )
@@ -57,7 +58,7 @@ export default function Footer({ contactData }) {
             <ul className="policy-menu">
               {
                 policyMenu.map((menuItem, index) =>
-                  <li key={index}><a href="">{menuItem.title.title}</a></li>
+                  <li key={index}><Link href={menuItem.title.uri}>{menuItem.title.title}</Link></li>
                 )
               }
             </ul>
