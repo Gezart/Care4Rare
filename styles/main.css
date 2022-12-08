@@ -1446,6 +1446,46 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
   text-transform: uppercase;
 }
 
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.pagination div {
+  border: 1px solid #E5E5E5;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  width: 50px;
+  height: 50px;
+  background-color: #fff;
+  color: #111827;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.pagination div:first-child {
+  border-bottom-left-radius: 6px;
+  border-top-left-radius: 6px;
+}
+
+.pagination div:last-child {
+  border-bottom-right-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
 .post-wrapper {
   margin-top: 50px;
   display: -webkit-box;

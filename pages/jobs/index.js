@@ -1,6 +1,7 @@
 import { gql } from '@apollo/client'
 import Link from 'next/link'
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import Banner from '../../components/Banner'
 import Container from '../../components/Container'
@@ -10,9 +11,92 @@ import { client } from '../../lib/apollo'
 
 const index = ({ jobs, blogOptions, contactData, menu }) => {
   const [search, setSearch] = useState("")
-  const [location, setLocation] = useState("")
+  const [location, setLocation] = useState("");
+  const [jobsData, setJobsData] = useState([]);
+  const [countOfData, setCountOfData] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [numberOfPages, setNumberOfPages] = useState("");
+
+
+
+
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
+
+  let jobSearchQuery = `
+  query allJobs($bundesland: String = "", $offset: Int = 10, $search: String = "") {
+    jobs(
+      where: {bundesland: $bundesland, offsetPagination: {offset: $offset, size: 5}, search: $search}
+    ) {
+      pageInfo {
+        offsetPagination {
+          total
+        }
+      }
+      nodes {
+        title
+        slug
+        featuredImage {
+          node {
+            mediaItemUrl
+          }
+        }
+        jobDetails {
+          bundesland
+          abWann
+        }
+      }
+    }
+  }
+  `
+  let searchQueryVariables = { "offset": ((currentPage - 1) * 5), "search": search, "bundesland": location }
+
+  const getData = async () => {
+    try {
+      let jobSearchData = await fetch(`${process.env.NEXT_PUBLIC_WORDPRESS_API_NEXT}/graphql`,
+        {
+          method: 'POST',
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            query: jobSearchQuery,
+            variables: searchQueryVariables
+          })
+        })
+
+      let jobSearchDataJson = await jobSearchData.json();
+
+      setJobsData(jobSearchDataJson.data.jobs.nodes);
+      setCountOfData(jobSearchDataJson.data.jobs.pageInfo.offsetPagination.total);
+
+      setNumberOfPages(Math.ceil(Number(jobSearchDataJson.data.jobs.pageInfo.offsetPagination.total) / 5));
+
+
+      console.log('dataass', jobSearchDataJson)
+
+    } catch (error) {
+
+    }
+  }
+
+
+  useEffect(() => {
+
+    getData();
+
+  }, [search, location,currentPage]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  },[search, location])
+
+  console.log('>>>>>>>>>>>', countOfData)
+
+  console.log('>>>>>>>>>>>', numberOfPages)
+
+
+
   return (
 
     <Layout contactData={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
@@ -23,21 +107,16 @@ const index = ({ jobs, blogOptions, contactData, menu }) => {
           <div className="job-header">
             <div className="jobs-header-content" dangerouslySetInnerHTML={{ __html: blogOptions?.jobsHeader }}></div>
             <div className="search-filters">
-              <input type="text" placeholder="Berufsbezeichnung oder nummer" onChange={(e) => setSearch(e.target.value.toLowerCase())} />
-              <input type="text" placeholder="PLZ oder Ort" onChange={(e) => setLocation(e.target.value.toLowerCase())} />
+              <input type="text" placeholder="Berufsbezeichnung oder nummer" value={search} onChange={(e) => setSearch(e.target.value.toLowerCase())} />
+              <input type="text" placeholder="PLZ oder Ort" value={location} onChange={(e) => setLocation(e.target.value.toLowerCase())} />
             </div>
           </div>
           <div className="all-jobs items">
             {
-              jobs.filter((job) => {
-                return search.toLowerCase() === ''
-                  ? job
-                  : job.title.toLowerCase().includes(search);
-              }).filter((job) => {
-                return location.toLowerCase() === ''
-                  ? job
-                  : job.jobDetails.bundesland.toLowerCase().includes(location);
-              }).map((job, index) =>
+
+
+
+              jobsData?.map((job, index) =>
                 <div className="job-item item" key={index}>
                   <div className="item-image">
                     {
@@ -67,6 +146,15 @@ const index = ({ jobs, blogOptions, contactData, menu }) => {
                 </div>
               )
             }
+
+          </div>
+          <div className="pagination">
+            {
+              [...Array(numberOfPages).keys()].map((item, index) => {
+                return <div key={index} onClick={() => setCurrentPage(item + 1)}>{item + 1}</div>
+              })
+
+            }
           </div>
         </Container>
       </main>
@@ -76,11 +164,16 @@ const index = ({ jobs, blogOptions, contactData, menu }) => {
 
 export default index
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }) {
 
   const allJobs = gql`
-      query allJobs {
-        jobs {
+      query allJobs($bundesland: String = "", $search: String = "") {
+        jobs(where: {bundesland: $bundesland, search: $search, offsetPagination: {size: 12, offset: 0 }}) {
+          pageInfo{
+            offsetPagination{
+              total
+            }
+          }
           nodes {
             title
             slug
@@ -94,7 +187,7 @@ export async function getServerSideProps() {
               abWann
             }
           }
-      }
+        } 
         acfOptionsJobsOption {
             blogOptions {
               banner {
@@ -180,7 +273,11 @@ export async function getServerSideProps() {
       }
     `
   const response = await client.query({
-    query: allJobs
+    query: allJobs,
+    variables: {
+      bundesland: params?.location,
+      search: params?.search
+    }
   })
 
   const jobs = response?.data?.jobs?.nodes
