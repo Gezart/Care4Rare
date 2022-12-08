@@ -2,8 +2,7 @@ import Link from "next/link";
 import Container from "./Container";
 
 
-export default function Footer({ contactData, footerData }) {
-  console.log("footer Data", footerData);
+export default function Footer({ contactData }) {
   let footerMenu = contactData.footerMenu
   let policyMenu = contactData.policyMenu
   console.log(footerMenu);
@@ -100,4 +99,3 @@ export default function Footer({ contactData, footerData }) {
     </footer>
   )
 }
-
