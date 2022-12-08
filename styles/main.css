@@ -407,26 +407,6 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
   color: #111827;
 }
 
-.banner.largeBanner .link-to-services {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #4C9D10;
-  width: 60px;
-  height: 60px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-}
-
 .text {
   margin-top: 50px;
 }
@@ -545,19 +525,6 @@ h1, h2, h3, h4, h5, h6, a, span, li, ul, p, label, option, input {
   .page-struktur .plain-text {
     margin-top: 150px;
   }
-}
-
-.page-terms-conditions .plain-text, .page-privacy-policy .plain-text, .page-impressum .plain-text {
-  -ms-grid-columns: 1fr;
-      grid-template-columns: 1fr;
-}
-
-.page-terms-conditions .plain-text .image, .page-privacy-policy .plain-text .image, .page-impressum .plain-text .image {
-  display: none;
-}
-
-.page-terms-conditions .plain-text a, .page-privacy-policy .plain-text a, .page-impressum .plain-text a {
-  color: #0F59A3;
 }
 
 .team-member {
