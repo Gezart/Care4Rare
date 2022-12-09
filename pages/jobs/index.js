@@ -13,6 +13,7 @@ const index = ({ jobs, blogOptions, contactData, menu }) => {
   const [location, setLocation] = useState("")
   let mainMenu = menu?.edges[0]?.node?.menuItems?.nodes;
   let rightMenu = menu?.edges[1]?.node?.menuItems?.nodes;
+  console.log('a');
   return (
 
     <Layout contactData={contactData} mainMenu={mainMenu} rightMenu={rightMenu}>
